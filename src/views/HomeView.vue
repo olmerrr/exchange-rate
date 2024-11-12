@@ -17,7 +17,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useCurrencyStore } from "@/stores/currencyStore";
-import { usePagination } from "@/composables/usePagination";
+import { usePagination } from "@/composable/usePagination";
 
 import Pagination from "@/components/Pagination.vue";
 import CurrencySearch from "@/components/CurrencySearch.vue";

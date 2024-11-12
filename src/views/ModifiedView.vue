@@ -12,14 +12,14 @@
 </template>
 
 <script setup>
-import { ref, watchEffect } from "vue";
-import { usePagination } from "@/composables/usePagination";
+import { ref, onMounted } from "vue";
+import { usePagination } from "@/composable/usePagination";
 import CurrencyList from "@/components/CurrencyList.vue";
 import Pagination from "@/components/Pagination.vue";
 
 const modifiedCurrencies = ref([]);
 
-watchEffect(() => {
+onMounted(() => {
   const savedModifiedCurrencies = JSON.parse(
     localStorage.getItem("modifiedCurrencies")
   );

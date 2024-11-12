@@ -17,10 +17,6 @@
 
     <button @click="saveCurrency" :disabled="!isModified">Save Rate</button>
   </div>
-
-  <div v-else>
-    <p>Currency not found</p>
-  </div>
 </template>
 
 <script setup>

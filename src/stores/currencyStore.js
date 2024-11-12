@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 
+const BASE_URL = "https://bank.gov.ua/NBUStatService/v1/statdirectory";
+
 export const useCurrencyStore = defineStore("currency", {
   state: () => ({
     currencies: [],
@@ -10,9 +12,7 @@ export const useCurrencyStore = defineStore("currency", {
   actions: {
     async fetchCurrencies(date) {
       try {
-        const response = await fetch(
-          `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${date}&json`
-        );
+        const response = await fetch(`${BASE_URL}/exchange?date=${date}&json`);
         const data = await response.json();
 
         this.currencies = data;
@@ -47,28 +47,6 @@ export const useCurrencyStore = defineStore("currency", {
       }
     },
 
-    setModifiedCurrencies(modifiedCurrencies) {
-      this.modifiedCurrencies = modifiedCurrencies;
-      localStorage.setItem(
-        "modifiedCurrencies",
-        JSON.stringify(modifiedCurrencies)
-      );
-    },
-
-    addOrUpdateModifiedCurrency(currency) {
-      const index = this.modifiedCurrencies.findIndex(
-        (c) => c.r030 === currency.r030
-      );
-
-      if (index !== -1) {
-        this.modifiedCurrencies[index] = { ...currency };
-      } else {
-        this.modifiedCurrencies.push({ ...currency });
-      }
-
-      this.setModifiedCurrencies(this.modifiedCurrencies);
-    },
-
     checkIfDataStale() {
       if (!this.lastUpdated) {
         return true;
@@ -86,7 +64,5 @@ export const useCurrencyStore = defineStore("currency", {
 
   getters: {
     getCurrencies: (state) => state.currencies,
-    getLastUpdated: (state) => state.lastUpdated,
-    getModifiedCurrencies: (state) => state.modifiedCurrencies,
   },
 });
