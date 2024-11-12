@@ -4,7 +4,7 @@
     <input type="date" v-model="selectedDate" />
 
     <CurrencyList :currencies="paginatedCurrencies" />
-    
+
     <Pagination
       :currentPage="currentPage"
       :totalPages="totalPages"
@@ -15,7 +15,9 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
+
 import { useCurrencyStore } from "@/stores/currencyStore";
+
 import { usePagination } from "@/composable/usePagination";
 import Pagination from "@/components/Pagination.vue";
 import CurrencyList from "@/components/CurrencyList.vue";

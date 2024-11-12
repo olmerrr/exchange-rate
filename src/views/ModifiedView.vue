@@ -13,6 +13,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+
 import { usePagination } from "@/composable/usePagination";
 import CurrencyList from "@/components/CurrencyList.vue";
 import Pagination from "@/components/Pagination.vue";

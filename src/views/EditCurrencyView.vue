@@ -22,6 +22,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
 import { useCurrencyStore } from "@/stores/currencyStore";
 
 const store = useCurrencyStore();
